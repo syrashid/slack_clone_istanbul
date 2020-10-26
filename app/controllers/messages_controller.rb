@@ -10,6 +10,10 @@ class MessagesController < ApplicationController
     @message.user = current_user
     if @message.save
       # If message saves, send me back to the chatroom, and also drop me to the latest message on the page so I don't have to scroll
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        render_to_string(partial: "message", locals: { message: @message })
+      )
       redirect_to chatroom_path(@chatroom, anchor: "message-#{@message.id}")
     else
       # Otherwise, re render the form on the show page
