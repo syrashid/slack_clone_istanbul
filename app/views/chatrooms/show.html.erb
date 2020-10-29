@@ -1,3 +1,12 @@
+<div id="videos"
+     data-controller="vonage"
+     data-vonage-api-key="<%= ENV["VONAGE_API_KEY"]  %>"
+     data-vonage-session-id="<%= @chatroom.vonage_session_id  %>"
+     data-vonage-token="<%= @token %>"
+     data-vonage-name="<%= current_user.nickname %>">
+</div>
+
+
 <div class="container mt-5">
   <h1>#<%= @chatroom.name %></h1>
   <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
